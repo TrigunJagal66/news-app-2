@@ -10,7 +10,7 @@ const Newsitem = ({ title, description, src, url }) => {
         }}
       >
         <img
-          src={src}
+          src={src || 'fallback-image-url.jpg'} // Use fallback image if src is undefined
           style={{
             height: "200px",
             width: "100%",
@@ -23,14 +23,14 @@ const Newsitem = ({ title, description, src, url }) => {
         />
         <div className="card-body">
           <h5 className="card-title" style={{ fontSize: "1.25rem", fontWeight: "bold" }}>
-            {title.slice(0, 50)}
-            {title.length > 50 ? "..." : ""}
+            {title ? title.slice(0, 50) : "No title available"}
+            {title && title.length > 50 ? "..." : ""}
           </h5>
           <p className="card-text" style={{ fontSize: "0.95rem", lineHeight: "1.4" }}>
-            {description ? description.slice(0, 90) : "News is not displayed"}
+            {description ? description.slice(0, 90) : "No description available"}
           </p>
           <a
-            href={url}
+            href={url || '#'} // Use "#" as a fallback if url is undefined
             className="btn btn-primary"
             style={{
               backgroundColor: "#007bff",
